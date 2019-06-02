@@ -1,0 +1,9 @@
+
+stages:
+  - prep
+  - build
+
+check-deps
+  - test -f ~/.rpmmacros
+  - sudo -n yum install -y rpm-build
+
