@@ -44,9 +44,18 @@ build-prep:
   script:
     - rpmbuild -bp ${CI_PROJECT_NAME}.spec
 
+build-srpm:
+  stage: build
+  script:
+    - rpmbuild -bs ${CI_PROJECT_NAME}.spec
+
 build-install:
   stage: build
   script:
     - rpmbuild -bi ${CI_PROJECT_NAME}.spec
 
+build-build:
+  stage: build
+  script:
+    - rpmbuild -bb ${CI_PROJECT_NAME}.spec
 
