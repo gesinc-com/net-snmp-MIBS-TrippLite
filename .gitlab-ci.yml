@@ -32,6 +32,10 @@ check-deps:
 
 grab-source:
   stage: prep
+  artifacts:
+    expire_in: 30 days
+    paths:
+      - tripplite-mib.zip
   script:
     - wget -O tripplite-mib.zip https://assets.tripplite.com/firmware/tripplite-mib.zip --no-check-certificate
 
