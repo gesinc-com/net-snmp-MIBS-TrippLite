@@ -32,6 +32,11 @@ before_script:
 check-deps:
   stage: prep
   script:
-  - test -f ~/.rpmmacros
-  - sudo -n yum install -y rpm-build
+    - test -f ~/.rpmmacros
+    - sudo -n yum install -y rpm-build
 
+grab-source:
+  stage: prep
+  script:
+    - wget -O tripplite-mib.zip https://assets.tripplite.com/firmware/tripplite-mib.zip --insecure
+    
