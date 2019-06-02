@@ -35,7 +35,7 @@ rm -rf $RPM_BUILD_ROOT
 for name in MIBs/*.MIB
 do
   install ${name} \
-  $RPM_BUILD_ROOT%{_datadir}/snmp/mibs/${name}.txt
+  $RPM_BUILD_ROOT%{_datadir}/snmp/mibs/$(basename ${name}).txt
 done
 
 
