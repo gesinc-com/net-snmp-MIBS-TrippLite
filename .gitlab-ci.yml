@@ -43,13 +43,13 @@ grab-source:
 build-prep:
   stage: build
   script:
-    - rpmbuild -bp ${PROJECT_NAME}
+    - rpmbuild -bp ${PROJECT_NAME}.spec
     - find -ls
 
 build-install:
   stage: build
   script:
-    - rpmbuild -bi ${PROJECT_NAME}
+    - rpmbuild -bi ${PROJECT_NAME}.spec
     - find -ls
 
 
