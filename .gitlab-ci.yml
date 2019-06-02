@@ -15,7 +15,7 @@ before_script:
   - |
     set -euxo pipefail
     eval export PROJECT_NAME="$(eval $PROJECT_NAME)"
-    sudo -n yum -y -q install git
+    sudo -n yum install -y -q git
     # write our protected keys to files
     if [[ -v PACKAGE_SIGNING_KEY_BASE64 ]]; then
       export SIGNING_KEY_PATH="$(mktemp --tmpdir signing-key.gpg.XXXX)"
