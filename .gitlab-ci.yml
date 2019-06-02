@@ -6,15 +6,10 @@ stages:
   - deploy
 
 variables:
-  PROJECT_NAME: echo $$CI_PROJECT_NAME | cut -c 10-
-  # TODO: This should no longer be necessary after the automake116 split.
-  #       We should now be able to get the required info from the the spec.
-  PRIMARY_RPM: "*.rpm"
 
 before_script:
   - |
     set -euxo pipefail
-    eval export PROJECT_NAME="$(eval $PROJECT_NAME)"
     sudo -n yum install -y -q git
     # write our protected keys to files
     if [[ -v PACKAGE_SIGNING_KEY_BASE64 ]]; then
@@ -43,14 +38,11 @@ grab-source:
 build-prep:
   stage: build
   script:
-    - find . -ls
-    - rpmbuild -bp ${PROJECT_NAME}.spec
-    - find -ls
+    - rpmbuild -bp ${CI_PROJECT_NAME}.spec
 
 build-install:
   stage: build
   script:
-    - rpmbuild -bi ${PROJECT_NAME}.spec
-    - find -ls
+    - rpmbuild -bi ${CI_PROJECT_NAME}.spec
 
 
