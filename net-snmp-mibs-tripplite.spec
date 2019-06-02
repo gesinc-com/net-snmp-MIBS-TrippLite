@@ -2,7 +2,7 @@
 Summary:        Tripp Lite Enterprise MIB Package
 Name:           net-snmp-mibs-tripplite
 Version:        15.5.3
-Release:        1.1
+Release:        1.2
 Epoch:          0
 
 Group:          System Environment/Daemons
@@ -12,6 +12,7 @@ URL:            https://www.tripplite.com
 Source0:        https://assets.tripplite.com/firmware/tripplite-mib.zip
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildArch:      noarch
 
 Requires:       net-snmp
 
