@@ -43,6 +43,7 @@ grab-source:
 build-prep:
   stage: build
   script:
+    - find . -ls
     - rpmbuild -bp ${PROJECT_NAME}.spec
     - find -ls
 
