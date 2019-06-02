@@ -2,7 +2,7 @@
 Summary:        Tripp Lite Enterprise MIB Package
 Name:           net-snmp-mibs-tripplite
 Version:        15.5.3
-Release:        1.2
+Release:        2
 Epoch:          0
 
 Group:          System Environment/Daemons
@@ -31,9 +31,12 @@ Tripp Lite Enterprise MIB Package
 rm -rf $RPM_BUILD_ROOT
 %{__mkdir_p} \
     $RPM_BUILD_ROOT%{_datadir}/snmp/mibs/
-%{__cp} -r \
-    MIBs/*.MIB \
-    $RPM_BUILD_ROOT%{_datadir}/snmp/mibs/
+
+for name in MIBs/*.MIB
+do
+  install ${name} \
+  $RPM_BUILD_ROOT%{_datadir}/snmp/mibs/${name}.txt
+done
 
 
 %clean
