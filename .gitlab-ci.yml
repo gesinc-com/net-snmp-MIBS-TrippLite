@@ -1,9 +1,37 @@
-
 stages:
   - prep
   - build
+  - test
+  - sign
+  - deploy
+
+variables:
+  PROJECT_NAME: echo $$CI_PROJECT_NAME | cut -c 10-
+  # TODO: This should no longer be necessary after the automake116 split.
+  #       We should now be able to get the required info from the the spec.
+  PRIMARY_RPM: "*.rpm"
+
+before_script:
+  - |
+    set -euxo pipefail
+    eval export PROJECT_NAME="$(eval $PROJECT_NAME)"
+    yum -y -q install git
+    # write our protected keys to files
+    if [[ -v PACKAGE_SIGNING_KEY_BASE64 ]]; then
+      export SIGNING_KEY_PATH="$(mktemp --tmpdir signing-key.gpg.XXXX)"
+      export DEPLOY_KEY_PATH="$(mktemp --tmpdir deploy-key.XXXX)"
+      # Note that we're avoiding exposing the keys in the job log here.
+      # Another option would be to use python os.getenv+base64.b64decode,
+      # since it's aleady installed at this point.
+      #
+      # Be cautious and do testing if changing these lines (even if job logs are private)
+      bash -ceuo pipefail 'echo $PACKAGE_SIGNING_KEY_BASE64 | base64 -d > '"$SIGNING_KEY_PATH"
+      bash -ceuo pipefail 'echo $GITHUB_YUM_DEPLOY_KEY_BASE64 | base64 -d > '"$DEPLOY_KEY_PATH"
+    fi
 
 check-deps:
+  stage: prep
+  script:
   - test -f ~/.rpmmacros
   - sudo -n yum install -y rpm-build
 
