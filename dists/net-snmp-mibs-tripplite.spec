@@ -1,7 +1,7 @@
 
 Summary:        Tripp Lite Enterprise MIB Package
 Name:           net-snmp-mibs-tripplite
-Version:        15.5.4
+Version:        15.5.3
 Release:        1
 Epoch:          0
 
@@ -46,9 +46,6 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Sat Jun 01 2019 bishop <bishopolis@gmail.com> 15.5.4-1
-- new package built with tito
-
 * Sat Jun 01 2019 Bishop <bishopolis@gmail.com> - 0:15.5.3-0
 - Initial RPM release.
 
