@@ -21,7 +21,7 @@ Tripp Lite Enterprise MIB Package
 
 
 %prep
-%setup -c
+%setup -qc
 
 
 #build
@@ -31,7 +31,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__mkdir_p} \
     $RPM_BUILD_ROOT%{_datadir}/snmp/mibs/
 %{__cp} -r \
-    MIBs/*.mib \
+    MIBs/*.MIB \
     $RPM_BUILD_ROOT%{_datadir}/snmp/mibs/
 
 
